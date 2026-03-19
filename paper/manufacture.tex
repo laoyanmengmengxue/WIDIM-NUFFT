@@ -123,7 +123,7 @@ and cannot be removed simply by further improving the underlying correlation-bas
 
 \begin{figure*}[!t]
   \centering
-  \includegraphics[width=0.98\textwidth]{figures/main/fig01_system_arch.png}
+  \includegraphics[width=0.98\textwidth]{fig01_system_arch.png}
 \caption{Workflow of the practical WIDIM(track)+NUFFT protocol on a representative real PIV pair.
     WIDIM supplies window tracking and translation priors, NUFFT estimates the local rotation from polar-spectrum correlation, and two-stage post-processing with adaptive p5 gating controls reliability before the final WIDIM-reference and proposed rotation-rate outputs are produced.}
   \label{fig:system_arch}
@@ -550,7 +550,7 @@ while its final adoption is supported jointly by qualitative evidence and cross-
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/main/fig02_rankine_evolution.png}
+  \includegraphics[width=\columnwidth]{fig02_rankine_evolution.png}
 \caption{Controlled ablation in the Rankine setting under identical window, noise,
   and sampling conditions.
   V0$\rightarrow$V3 isolates the effect of each design change on the same case.}
@@ -569,7 +569,7 @@ V3 is adopted as the final deployable protocol used throughout.
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/main/fig03_protocol_summary.png}
+  \includegraphics[width=\columnwidth]{fig03_protocol_summary.png}
   \caption{Protocol summary across four synthetic flows.
     Each cell reports $\mathrm{RMSE}_{\mathrm{WIDIM}}/\mathrm{RMSE}_{\mathrm{variant}}$
     ($>1$ better; $1$ parity; $<1$ worse).
@@ -849,7 +849,7 @@ contains the A3/B3/B4 supporting analyses that further verify the high-SNR assum
 %--- Fig. 5
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/main/fig04_crlb_hierarchy.png}
+  \includegraphics[width=\columnwidth]{fig04_crlb_hierarchy.png}
   \caption{Numerical validation of CRLB hierarchy for rotation estimation
     ($\sigma_s=0.01$, $N=64$\,px):
     (a) $\CRLB_{1D}^{1/2}$ under five weighting functions versus $\CRLB_{2D}^{1/2}=0.018^\circ$;
@@ -869,7 +869,7 @@ it most clearly exposes the difference between the direct-estimation path and th
 %--- Fig. 6
 \begin{figure}[!b]
   \centering
-  \includegraphics[width=\columnwidth]{figures/main/fig06a_rankine_field.png}
+  \includegraphics[width=\columnwidth]{fig06a_rankine_field.png}
   \caption{Single-seed Rankine visualization under the final track-prior protocol
     ($\sigma_s=0.01$).
     The figure shows the ground-truth rotation-rate field, the proposed field,
@@ -881,7 +881,7 @@ it most clearly exposes the difference between the direct-estimation path and th
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\columnwidth]{figures/main/fig06b_rankine_mc.png}
+  \includegraphics[width=\columnwidth]{fig06b_rankine_mc.png}
   \caption{Monte Carlo RMSE summary for the final Rankine protocol
     ($N=12000$, 30 seeds, $\sigma_s=0.01$).
     WIDIM-track+NUFFT ($0.864^\circ$, 95\% CI $[0.842,0.887]$)
@@ -897,7 +897,7 @@ it most clearly exposes the difference between the direct-estimation path and th
 % --- Fig. 13 multi-flow ground-truth comparison (two-column)
 \begin{figure*}[!t]
   \centering
-  \includegraphics[width=0.96\textwidth]{figures/main/fig07_gt_vorticity.png}
+  \includegraphics[width=0.96\textwidth]{fig07_gt_vorticity.png}
   \caption{Ground-truth rotation-rate comparison across four synthetic flows
     ($\sigma_s=0.01$, seed=42 visualization).
     Columns: analytic truth, NUFFT estimate, WIDIM-gradient estimate, NUFFT absolute error, and WIDIM absolute error.
@@ -923,7 +923,7 @@ Relative to the ideal Rankine experiment, this benchmark introduces stronger par
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\columnwidth]{figures/main/fig08_bridge_visual.png}
+  \includegraphics[width=\columnwidth]{fig08_bridge_visual.png}
   \caption{Near-real truth bridge visualization at the L3 rendering level.
     Rows: ground-truth field, WIDIM-gradient field, and final proposed field.
     Columns: Rankine, Lamb--Oseen, solid rotation, and mixed vortex.}
@@ -932,7 +932,7 @@ Relative to the ideal Rankine experiment, this benchmark introduces stronger par
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=\columnwidth]{figures/main/fig08_bridge_truth_vs_realism.png}
+  \includegraphics[width=\columnwidth]{fig08_bridge_truth_vs_realism.png}
   \caption{Near-real truth bridge benchmark.
     Each panel tracks one bridge flow under increasing realism;
     dashed curves denote WIDIM and solid curves denote the final protocol.}
@@ -1010,7 +1010,7 @@ and Fig.~\ref{fig:real_proxy_case} provides a representative real vortex-ring ca
 
 \begin{figure}[!b]
   \centering
-  \includegraphics[width=0.76\columnwidth]{figures/main/fig09_real_gain_modes.png}
+  \includegraphics[width=0.76\columnwidth]{fig09_real_gain_modes.png}
   \caption{Gain modes on all 320 real PIV pairs.
     Top: pairwise gains in the $\Delta\mathrm{RMSE}_{\mathrm{gate}}$--$\Delta\mathrm{Corr}_{\mathrm{gate}}$ plane.
     Bottom: source medians with interquartile ranges; \texttt{cam2\_5001} marks a simultaneous tail-suppression and structure-recovery case.}
@@ -1104,7 +1104,7 @@ Local rotation-rate measurement in PIV is better posed as direct spectral angula
 
 \begin{strip}
   \centering
-  \includegraphics[width=0.90\textwidth]{figures/main/fig10_real_proxy_case.png}
+  \includegraphics[width=0.90\textwidth]{fig10_real_proxy_case.png}
   \captionof{figure}{Real-data evidence of the final WIDIM(track)+NUFFT protocol.
     The representative PIV book \texttt{cam2\_5001} case shows the frame pair, the local ring ROI in the WIDIM and proposed fields, and the corresponding gated full-field maps.
     The dashed circle marks the fitted ring-centered ROI.}
@@ -1115,7 +1115,7 @@ Local rotation-rate measurement in PIV is better posed as direct spectral angula
 \section*{Data Availability}
 % ------------------------------------------------------------------
 
-The real-data sources used in this manuscript are publicly available from the PIV Challenge website (\url{http://www.pivchallenge.org}; Cases A, C, E, and F) and the PIV book vortex-ring archive (\url{https://pivbook.org}); the single-pair sources (Cases A and F) are merged into the pooled real-data protocol, and the synthetic benchmark cases are generated from standard fluid-dynamics models.
+The manuscript source, code, representative example data, bridge-benchmark cases, and processed results used in this study are available at \url{https://github.com/laoyanmengmengxue/WIDIM-NUFFT}. The original real-data sources remain publicly available from the PIV Challenge website (\url{http://www.pivchallenge.org}; Cases A, C, E, and F) and the PIV book vortex-ring archive (\url{https://pivbook.org}); the single-pair sources (Cases A and F) are merged into the pooled real-data protocol.
 
 % ──────────────────────────────────────────────────────────────────
 %  References
@@ -1124,3 +1124,4 @@ The real-data sources used in this manuscript are publicly available from the PI
 \bibliography{refs}
 
 \end{document}
+
