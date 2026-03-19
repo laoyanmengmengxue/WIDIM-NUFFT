@@ -1,0 +1,36 @@
+========================================================================
+Ground-Truth Vorticity Comparison Results (WIDIM+NUFFT, NO GATE)
+sigma_s=0.01, WS=64px, MC N_SEEDS=30, Bootstrap N_BOOT=1000
+========================================================================
+
+Flow: Rankine Vortex
+  N (all windows, no gate): 1470
+  NUFFT RMSE: 2.894° [1.680, 4.383] 95%CI
+  WIDIM RMSE: 1.125° [1.064, 1.179] 95%CI
+  Improvement: 0.39x
+
+Flow: Lamb-Oseen Vortex
+  N (all windows, no gate): 1470
+  NUFFT RMSE: 3.377° [3.152, 3.605] 95%CI
+  WIDIM RMSE: 2.484° [2.264, 2.707] 95%CI
+  Improvement: 0.74x
+
+Flow: Solid Rotation
+  N (all windows, no gate): 1470
+  NUFFT RMSE: 5.019° [5.002, 5.036] 95%CI
+  WIDIM RMSE: 0.289° [0.274, 0.304] 95%CI
+  Improvement: 0.06x
+
+Flow: Linear Shear
+  N (all windows, no gate): 1470
+  NUFFT RMSE: 0.472° [0.465, 0.480] 95%CI
+  WIDIM RMSE: 0.899° [0.898, 0.900] 95%CI
+  Improvement: 1.90x
+
+
+% LaTeX table row format:
+% Flow & NUFFT RMSE (95\%CI) & WIDIM RMSE (95\%CI) & Improvement \\
+% Rankine Vortex & 2.894 [1.680,4.383] & 1.125 [1.064,1.179] & 0.39x \\
+% Lamb-Oseen Vortex & 3.377 [3.152,3.605] & 2.484 [2.264,2.707] & 0.74x \\
+% Solid Rotation & 5.019 [5.002,5.036] & 0.289 [0.274,0.304] & 0.06x \\
+% Linear Shear & 0.472 [0.465,0.480] & 0.899 [0.898,0.900] & 1.90x \\

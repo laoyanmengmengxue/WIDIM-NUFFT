@@ -1,0 +1,28 @@
+﻿Real Data Sources for WIDIM-NUFFT
+================================
+
+This repository uses five public real-data origins.
+The current pooled real-data evaluation organizes them into three local runnable pools
+(PIV_C, PIV_E, and PIV_book), while the two single-pair sources are merged into the pooled set.
+
+1. PIV Challenge 2001 Case A (single pair)
+   URL: https://www.pivchallenge.org/pub/A/A.zip
+   Note: merged into the pooled real-data set; not kept as a standalone local folder.
+
+2. PIV Challenge 2005 Case C
+   URL: https://www.pivchallenge.org/pub05/C/C.zip
+   Local pool name: PIV_C
+
+3. PIV Challenge 2014 Case E
+   URL: https://www.pivchallenge.org/pub14/4th_PIV-Challenge_Case_E.zip
+   Local pool name: PIV_E
+
+4. PIV Challenge 2014 Case F (single pair)
+   URL: https://www.pivchallenge.org/pub14/4th_PIV-Challenge_Case_F.zip
+   Note: merged into the pooled real-data set; not kept as a standalone local folder.
+
+5. PIV book vortex-ring sample
+   URL: https://pivbook.org/fileadmin/user_upload/Digital_Content/Chapter_17/Section_17.1/download/pivbook_dc17.1.zip
+   Local pool name: PIV_book
+
+Current pooled real-data run size in the manuscript: 320 pairs.
