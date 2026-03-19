@@ -1,0 +1,7 @@
+﻿Google Drive release link for the large archive that could not be uploaded directly to GitHub:
+https://drive.google.com/file/d/1tgd2w_T7BI6WvztFlA7I05nrTdOY_ICN/view?usp=sharing
+
+Contents intended for this archive:
+- original data package
+- large real-data results package
+- additional files omitted from direct GitHub upload because of size constraints
