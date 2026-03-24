@@ -166,10 +166,8 @@ Existing work usually treats rotation rate as a derivative of displacement,
 rarely formulates a Fisher-information framework that directly targets the local rotation angle or rotation rate,
 and has not quantified the structural precision loss of the gradient path relative to an information-theoretic bound.
 
-The key question is whether local rotation rate can be estimated directly from spectral angular shift rather than inferred by finite differencing of an estimated displacement field.
-The theoretical object is a NUFFT-based direct estimator,
-and the practical contribution is its minimal deployable form under finite-window PIV,
-namely WIDIM(track)-based translation priors together with percentile-based reliability control.
+The key question is whether local rotation rate can be estimated as a direct angular action in the spectral domain rather than inferred only after displacement estimation and spatial differencing.
+The estimator is therefore derived first in direct spectral form and then instantiated as a minimal deployable protocol for finite-window PIV, in which WIDIM(track) preserves correspondence through translation priors and percentile-based reliability control regularizes deployment under local mismatch.
 
 The contributions are threefold.
 First, it establishes a CRLB framework that directly targets the local rotation angle and rotation rate, derives the 2D bound, the 1D information-reduction relationship, and an accurate practical weighting approximation, and quantifies the structural precision limitation of the WIDIM gradient path.
@@ -180,9 +178,8 @@ Third, through ideal uniform rotation, the primary Rankine experiment, multi-flo
 \label{sec:theory}
 % ------------------------------------------------------------------
 
-The CRLB and observation model for direct local rotation-rate estimation in PIV are developed first, followed by the minimal deployable protocol used under practical finite-window conditions.
-In that protocol, WIDIM(track) provides displacement priors only,
-while gating and refill act only as reliability-control mechanisms and do not alter the direct measurement object itself.
+The methodology first develops the CRLB and observation model for direct local rotation-rate estimation and then instantiates the same measurement object under practical finite-window PIV.
+In the deployable protocol, local motion is factorized into a tracked translational component and a residual angular action: WIDIM(track) conditions correspondence through displacement priors, the spectral estimator projects the residual rotation into polar-frequency coordinates, and gating together with refill regularizes deployment without redefining the measurement target itself.
 The displacement CRLB is retained only as a reference bound for the displacement path
 to indicate the operating regime of the WIDIM branch.
 Its numerical validation and auxiliary figures are collected in the supplementary sections
@@ -453,12 +450,12 @@ The computational order of the direct estimator remains $O(N^2\log N + N_rN_\the
 \label{sec:system}
 %------------------------------------------------------------------
 
-The NUFFT direct estimator defined above is the theoretical object of the paper.
-In practical PIV, finite windows, particle turnover, and local translation can weaken direct spectral matching.
-The deployable protocol preserves the same measurement object while adding only WIDIM(track)-based displacement priors and reliability control at the input side:
-WIDIM(track) maintains window correspondence,
-NUFFT performs direct rotation-rate estimation,
-and the two-stage post-process together with percentile gating serves only for reliability control.
+The NUFFT direct estimator defined above remains the measurement object throughout the paper.
+Under practical PIV, finite windows, particle turnover, and local translation do not change that object, but they do corrupt the local observation model seen by a direct spectral matcher.
+The deployable protocol therefore preserves the same target while adding only the operations needed to condition correspondence and regularize reliability:
+WIDIM(track) preserves window correspondence through translation,
+NUFFT estimates the residual rotation rate directly,
+and the two-stage post-process together with percentile gating suppresses low-confidence mismatch without changing what is measured.
 Figure~\ref{fig:system_arch} summarizes the stage-by-stage workflow of the system.
 the focus here is its physical division of labor and deployment constraints.
 Further arguments for translation-only alignment and adaptive percentile gating are given in the supplementary section
@@ -913,8 +910,8 @@ whereas Fig.~\ref{fig:gt_summary} in the methodology section has already summari
 
 \subsection{Near-Real Ground-Truth Bridge}
 
-A near-real ground-truth bridge benchmark is introduced between ideal analytic truth and real data without truth.
-It uses the same final protocol and gated evaluation convention as the real-data study while progressively adding particle turnover, particle-density fluctuation, nonuniform illumination, background noise, and weak flow perturbation.
+A near-real ground-truth bridge benchmark closes the gap between ideal analytic truth and real data without truth.
+It preserves ground truth while progressively reintroducing the rendering pathologies that dominate practical PIV, namely particle turnover, particle-density fluctuation, nonuniform illumination, background noise, and weak flow perturbation.
 These factors define a four-level realism ladder from L0 (ideal) to L3 (near-real).
 Across Rankine, Lamb--Oseen, solid rotation, and a vortex+translation+shear mixed flow, $4\times4\times8=128$ cases are evaluated to test whether the true-accuracy advantage over the WIDIM gradient baseline persists as rendering departs from ideal synthetic conditions.
 
@@ -957,9 +954,9 @@ consistent with the boundary behavior already seen in the multi-flow synthetic e
 
 \subsection{Real-Data Results and Discussion}
 
-Real-data interpretation relies on two preceding results.
-The near-real bridge benchmark establishes a truth-level advantage over WIDIM under more realistic rendering conditions, whereas Table~\ref{tab:proxy_calibration} calibrates the gated proxy gains against raw-to-final truth gains.
-The real-data results are treated as calibrated evidence of deployment robustness and structural recovery.
+Real-data interpretation rests on two preceding results.
+The near-real bridge benchmark establishes a truth-level advantage over WIDIM under realistic rendering conditions, whereas Table~\ref{tab:proxy_calibration} assigns an operational meaning to the gated proxy gains through their relation to raw-to-final truth gains.
+The real-data study then asks where that gain appears in practice and whether it manifests primarily as tail suppression, structural recovery, or both.
 
 Table~\ref{tab:proxy_calibration} reports the corresponding synthetic calibration under the unified evaluation convention.
 Using a separate 20-seed calibration set, $\Delta\mathrm{Corr}_{\mathrm{gate}}$, $\Delta\mathrm{RMSE}_{\mathrm{gate}}$, and $\Delta\mathrm{MAE}_{\mathrm{gate}}$ are mapped to the ground-truth gain $\Delta\mathrm{RMSE}_{\mathrm{true}}$.
@@ -995,9 +992,9 @@ The calibration identifies $\Delta\mathrm{RMSE}_{\mathrm{gate}}$ and $\Delta\mat
   \end{threeparttable}
 \end{table}
 
-Table~\ref{tab:proxy_calibration}, together with the supplement scatter plots, shows that $\Delta\mathrm{RMSE}_{\mathrm{gate}}$ is nearly linearly related to raw-to-final $\Delta\mathrm{RMSE}_{\mathrm{true}}$ and serves as the primary real-data quantity.
+Table~\ref{tab:proxy_calibration}, together with the supplement scatter plots, shows that $\Delta\mathrm{RMSE}_{\mathrm{gate}}$ tracks raw-to-final $\Delta\mathrm{RMSE}_{\mathrm{true}}$ almost linearly and therefore serves as the primary real-data quantity.
 By contrast, $\Delta\mathrm{Corr}_{\mathrm{gate}}$ remains directionally consistent with true improvement but is more sensitive to the continuity of the underlying flow structure and is treated only as supporting evidence for structural recovery.
-The resulting interpretation has two complementary modes: complex texture, local occlusion, or window mismatch mainly reduce $\Delta\mathrm{RMSE}_{\mathrm{gate}}$ and $\Delta\mathrm{MAE}_{\mathrm{gate}}$, whereas continuous vortex rings or vortex cores more readily yield additional gains in $\Delta\mathrm{Corr}_{\mathrm{gate}}$ and structural coherence~\cite{Shan2025Lightweight,Choi2023SpatialRefinement,Elrefaie2024StereoPIV}.
+This distinction yields two complementary gain modes: complex texture, local occlusion, or window mismatch mainly appear as reductions in $\Delta\mathrm{RMSE}_{\mathrm{gate}}$ and $\Delta\mathrm{MAE}_{\mathrm{gate}}$, whereas continuous vortex rings or vortex cores more readily generate additional gains in $\Delta\mathrm{Corr}_{\mathrm{gate}}$ and spatial coherence~\cite{Shan2025Lightweight,Choi2023SpatialRefinement,Elrefaie2024StereoPIV}.
 
 \subsubsection{Overall Real-Data Results}
 
@@ -1043,7 +1040,7 @@ As a result, complex texture and local mismatch first manifest as decreases in $
 \label{sec:conclusion}
 % ------------------------------------------------------------------
 
-Local rotation-rate measurement in PIV is better posed as direct spectral angular-shift estimation than as a quantity derived from an estimated displacement field.
+Local rotation-rate measurement in PIV is more naturally posed as direct spectral angular-shift estimation than as a quantity obtained only after displacement estimation and spatial differencing.
 
 \begin{enumerate}
   \item \textbf{Theory.}
@@ -1072,6 +1069,8 @@ Local rotation-rate measurement in PIV is better posed as direct spectral angula
     in continuous vortical structures, more clearly as recovery of spatial coherence.
     On the representative vortex-ring case \texttt{cam2\_5001}, an independent ring-centered structure check further shows higher annulus-to-background contrast (1.34 versus 0.77) and a slightly longer continuous arc in the proposed field.
 \end{enumerate}
+
+The result is therefore not a universal replacement for gradient-based rotation measurement, but a direct measurement path whose advantage becomes visible precisely in translation-bearing, spatially localized vortical structures under practical finite-window PIV.
 
 \begin{table*}[!htbp]
   \centering
